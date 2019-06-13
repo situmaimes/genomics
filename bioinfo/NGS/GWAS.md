@@ -1,0 +1,1 @@
+https://www.ebi.ac.uk/training/online/course/gwas-catalog-exploring-snp-trait-associations
