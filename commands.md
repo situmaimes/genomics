@@ -1,6 +1,5 @@
 # mysql
 mysql -u root -p
-
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'192.168.1.3' IDENTIFIED BY 'mypassword’ WITH GRANT OPTION;
 flush privileges;
@@ -129,11 +128,7 @@ hexo new some
 hexo d -g
 
 
-
 最新的anaconda对powershell默认支持但是在cmd中需要conda activate base
 激活conda activate base conda deactivate
 权限放开
 C:\Users\Si tu m'aimes\.conda\envs\ml
-
-python manage.py makemigrations
-python manage.py migrate

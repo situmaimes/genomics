@@ -36,7 +36,9 @@ With no options or regions specified, prints all alignments in the specified inp
 -b :Output in the BAM format.
 -S :Ignored for compatibility with previous samtools versions. Previously this option was required if input was in SAM format, but now the correct format is automatically detected by examining the first few characters of input.
 -@ INT :Number of BAM compression threads to use in addition to main thread [0].
-
+-h Include the header in the output.
+-f Only output alignments with all bits set in INT present in the FLAG field
+-q Skip alignments with MAPQ smaller than INT [0].
 # flagstat 
 Does a full pass through the input file to calculate and print statistics to stdout.
 
@@ -45,3 +47,33 @@ Index a coordinate-sorted BAM or CRAM file for fast random access.
 
 # stats
 samtools stats collects statistics from BAM files and outputs in a text format. The output can be visualized graphically using plot-bamstats.
+
+
+# markdup
+
+samtools markdup [-l length] [-r] [-s] [-T] [-S] in.algsort.bam out.bam
+
+Mark duplicate alignments from a coordinate sorted file that has been run through fixmate with the -m option. This program relies on the MC and ms tags that fixmate provides.
+
+-r
+Remove duplicate reads.
+
+EXAMPLE
+# The first sort can be omitted if the file is already name ordered
+samtools sort -n -o namesort.bam example.bam
+# Add ms and MC tags for markdup to use later
+samtools fixmate -m namesort.bam fixmate.bam
+# Markdup needs position order
+samtools sort -o positionsort.bam fixmate.bam
+# Finally mark duplicates
+samtools markdup positionsort.bam markdup.bam
+
+
+# sort
+samtools sort [-l level] [-m maxMem] [-o out.bam] [-O format] [-n] [-t tag] [-T tmpprefix] [-@ threads] [in.sam|in.bam|in.cram]
+
+# idxstats
+idxstats
+samtools idxstats in.sam|in.bam|in.cram
+
+Retrieve and print stats in the index file corresponding to the input file. Before calling idxstats, the input BAM file should be indexed by samtools index.

@@ -50,3 +50,12 @@ yellowbrick
 jupyter安装自动补全
 pip install jupyter_contrib_nbextensions
 jupyter contrib nbextension install --user --skip-running-check
+
+from pytz import timezone  
+from datetime import datetime  
+utc_tz = timezone('UTC')  
+now = datetime.now().replace(tzinfo=cst_tz)  
+
+django
+python manage.py makemigrations
+python manage.py migrate
